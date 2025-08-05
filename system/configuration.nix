@@ -57,7 +57,7 @@
    services.nginx = {
   enable = true;
 
-  virtualHosts."test-server-vps.work.gd" = {
+  virtualHosts."0.0.0.0" = {
     enableACME = true;
     forceSSL = true;
 
@@ -71,7 +71,7 @@
   recommendedTlsSettings = true;    
   virtualHosts = {
     # Replace with the domain from your siteUrl
-    "mattermost.test-server-vps.work.gd" = {
+    "default" = {
       forceSSL = true; # Enforce SSL for the site
       enableACME = true; # Enable SSL for the site
       locations."/" = {
@@ -119,9 +119,9 @@ services.mattermost = {
       # Profile Picture > Site Administration > Configuration >  Mailer Configuration 
       mailer = {
         ENABLED = true;
-        SMTP_ADDR = "mail.example.com";
-        FROM = "noreply@test-server-vps.work.gd";
-        USER = "noreply@test-server-vps.work.gd";
+        SMTP_ADDR = "smtp.gmail.com";
+        FROM = "filip.kranjec@gmail.com";
+        USER = "filip.kranjec@gmail.com";
       };
     };
   };
