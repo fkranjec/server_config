@@ -55,15 +55,23 @@
    };
 
    services.nginx = {
-    virtualHosts."test-server-vps.work.gd" = {
-      forceSSL = true;
-      enableACME = true;
-      extraConfig = ''
-        client_max_body_size 512M;
-      '';
-      locations."/".proxyPass = "http://localhost:3000";
+  enable = true;
+
+  virtualHosts."test-server-vps.work.gd" = {
+    enableACME = true;
+    forceSSL = true;
+
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:3000";
+      proxyWebsockets = true;
     };
   };
+};
+
+security.acme = {
+  acceptTerms = true;
+  email = "you@example.com";  # For Let's Encrypt
+};
 
   services.forgejo = {
     enable = true;
@@ -72,9 +80,9 @@
     lfs.enable = true;
     settings = {
       server = {
-        DOMAIN = "git.example.com";
-        # You need to specify this to remove the port from URLs in the web UI.
-        ROOT_URL = "https://test-server-vps.work.gd/"; 
+        DOMAIN = "test-server-vps.work.gd";
+        ROOT_URL = "https://test-server-vps.work.gd/";
+        HTTP_ADDR = "127.0.0.1";  # only accessible by Nginx
         HTTP_PORT = 3000;
       };
       # You can temporarily allow registration to create an admin user.
@@ -96,7 +104,7 @@
     };
   };
    
-   networking.firewall.allowedTCPPorts = [ 22 3000 ];
+   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
    
    system.stateVersion = "24.11";
  }
