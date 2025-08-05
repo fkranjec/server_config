@@ -66,11 +66,30 @@
       proxyWebsockets = true;
     };
   };
+
+  recommendedProxySettings = true;
+  recommendedTlsSettings = true;    
+  virtualHosts = {
+    # Replace with the domain from your siteUrl
+    "mattermost.test-server-vps.work.gd" = {
+      forceSSL = true; # Enforce SSL for the site
+      enableACME = true; # Enable SSL for the site
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8065"; # Route to Mattermost
+        proxyWebsockets = true;
+      };
+    };
+  };
 };
 
 security.acme = {
   acceptTerms = true;
-  email = "you@example.com";  # For Let's Encrypt
+  email = "filip.kranjec@gmail.com";  # For Let's Encrypt
+};
+
+services.mattermost = {
+  enable = true;
+  siteUrl = "https://mattermost.test-server-vps.work.gd"; # Set this to the URL you will be hosting the site on.
 };
 
   services.forgejo = {
@@ -89,7 +108,7 @@ security.acme = {
         HTTP_PORT = 3000;
       };
       # You can temporarily allow registration to create an admin user.
-      # service.DISABLE_REGISTRATION = true; 
+      service.DISABLE_REGISTRATION = true; 
       # Add support for actions, based on act: https://github.com/nektos/act
       actions = {
         ENABLED = true;
