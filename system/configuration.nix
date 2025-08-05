@@ -79,6 +79,9 @@ security.acme = {
     # Enable support for Git Large File Storage
     lfs.enable = true;
     settings = {
+      ui = {
+        DEFAULT_THEME = "auto";
+      };
       server = {
         DOMAIN = "test-server-vps.work.gd";
         ROOT_URL = "https://test-server-vps.work.gd/";
@@ -86,7 +89,7 @@ security.acme = {
         HTTP_PORT = 3000;
       };
       # You can temporarily allow registration to create an admin user.
-      service.DISABLE_REGISTRATION = false; 
+      # service.DISABLE_REGISTRATION = true; 
       # Add support for actions, based on act: https://github.com/nektos/act
       actions = {
         ENABLED = true;
