@@ -5,7 +5,7 @@
  
    outputs = { nixpkgs, ... }: {
      nixosConfigurations = {
-       hetzner-x86_64 = nixpkgs.lib.nixosSystem {
+       hetzner-vps = nixpkgs.lib.nixosSystem {
          system = "x86_64-linux";
          modules = [
            ./system/configuration.nix
