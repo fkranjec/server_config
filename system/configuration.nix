@@ -10,7 +10,7 @@
      pkgs.git
      pkgs.forgejo
      pkgs.mattermost
-     pkgs.keycloak
+     # pkgs.keycloak
    ];
    
    fileSystems."/" = {
@@ -130,24 +130,24 @@ services.mattermost = {
 
 
   services.keycloak = {
-    enable = true;
+    enable = false;
 
-    database = {
-      type = "postgresql";
-      createLocally = true;
-      username = "admin";
-      passwordFile = "/etc/nixos/secrets/keycloak";
-    };
-    
-    initialAdminPassword = "/etc/nixos/secrets/keycloak";
-
-    settings = {
-      hostname = "homelab.com.hr";
-      http-relative-path = "/cloak";
-      http-port = 38080;
-      proxy-headers = "xforwarded";
-      http-enabled = true;
-    };
+    # database = {
+    #   type = "postgresql";
+    #   createLocally = true;
+    #   username = "admin";
+    #   passwordFile = "/etc/nixos/secrets/keycloak";
+    # };
+    # 
+    # initialAdminPassword = "/etc/nixos/secrets/keycloak";
+    #
+    # settings = {
+    #   hostname = "homelab.com.hr";
+    #   http-relative-path = "/cloak";
+    #   http-port = 38080;
+    #   proxy-headers = "xforwarded";
+    #   http-enabled = true;
+    # };
     
   };
    
