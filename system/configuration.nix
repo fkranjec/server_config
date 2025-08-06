@@ -63,25 +63,36 @@
     recommendedOptimisation = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
-
-    virtualHosts."homelab.com.hr" = {
+    virtualHosts."mattermost.homelab.com.hr" = {
       enableACME = true;
       forceSSL = true;
-      locations."/mattermost" = {
-        proxyPass = "http://127.0.0.1:8065";
-        proxyWebsockets = true;
-        extraConfig = ''
-          if ($request_method = HEAD) {
-                  return 200;
-              }
-        '';
+      locations."/" = {
+      proxyPass = "http://127.0.0.1:8065";
+      proxyWebsockets = true;
+      extraConfig = ''
+        if ($request_method = HEAD) {
+                return 200;
+            }
+      '';
       };
-      locations."/forgejo" = {
+    };
+    virtualHosts."forgejo.homelab.com.hr" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
         proxyPass = "http://127.0.0.1:3000";
         proxyWebsockets = true;
       };
       locations."/auth" = {
         proxyPass = "http://127.0.0.1:38080";
+        proxyWebsockets = true;
+      };
+    };
+    virtualHosts."keycloak.homelab.com.hr" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:38080/auth";
         proxyWebsockets = true;
       };
     };
@@ -95,7 +106,7 @@ security.acme = {
 
 services.mattermost = {
   enable = true;
-  siteUrl = "https://homelab.com.hr/mattermost";
+  siteUrl = "https://mattermost.homelab.com.hr";
 };
 
   services.forgejo = {
@@ -109,7 +120,7 @@ services.mattermost = {
       };
       server = {
         DOMAIN = "homelab.com.hr";
-        ROOT_URL = "https://homelab.com.hr/forgejo/";
+        ROOT_URL = "https://forgejo.homelab.com.hr";
         HTTP_PORT = 3000;
       };
       # You can temporarily allow registration to create an admin user.
@@ -147,6 +158,7 @@ services.mattermost = {
     settings = {
       hostname = "homelab.com.hr";
       http-port = 38080;
+      http-relative-path = "/auth";
       http-enabled = true;
     };
   };
