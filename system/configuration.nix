@@ -145,7 +145,7 @@ services.mattermost = {
       hostname = "keycloak.homelab.com.hr";
       http-relative-path = "/cloak";
       http-port = 8080;
-      proxy = "passthrough";
+      proxy-headers = "forwarded";
       http-enabled = true;
     };
     
