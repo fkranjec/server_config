@@ -110,7 +110,7 @@ services.mattermost = {
 };
 
   services.forgejo = {
-    enable = false;
+    enable = true;
     database = {
       type = "postgres";
     };
