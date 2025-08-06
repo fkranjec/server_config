@@ -66,15 +66,15 @@
       enableACME = true;
       forceSSL = true;
       locations."/mattermost" = {
-        proxyPass = "https://127.0.0.1:8065/";
+        proxyPass = "http://127.0.0.1:8065/";
         proxyWebsockets = true;
       };
       locations."/forgejo" = {
-        proxyPass = "https://127.0.0.1:3000/";
+        proxyPass = "http://127.0.0.1:3000/";
         proxyWebsockets = true;
       };
       locations."/auth" = {
-        proxyPass = "https://127.0.0.1:8080/";
+        proxyPass = "http://127.0.0.1:8080/";
         proxyWebsockets = true;
       };
     };
