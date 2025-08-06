@@ -124,7 +124,7 @@ services.mattermost = {
         HTTP_PORT = 3000;
       };
       # You can temporarily allow registration to create an admin user.
-      service.DISABLE_REGISTRATION = true; 
+      # service.DISABLE_REGISTRATION = true; 
       # Add support for actions, based on act: https://github.com/nektos/act
       actions = {
         ENABLED = true;
