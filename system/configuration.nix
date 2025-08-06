@@ -8,6 +8,7 @@
    environment.systemPackages = [
      pkgs.vim
      pkgs.git
+     pkgs.forgejo
    ];
    
    fileSystems."/" = {
@@ -54,33 +55,33 @@
      };
    };
 
-   services.nginx = {
-  enable = true;
-
-  virtualHosts."0.0.0.0" = {
-    enableACME = true;
-    forceSSL = true;
-
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:3000";
-      proxyWebsockets = true;
-    };
-  };
-
-  recommendedProxySettings = true;
-  recommendedTlsSettings = true;    
-  virtualHosts = {
-    # Replace with the domain from your siteUrl
-    "default" = {
-      forceSSL = true; # Enforce SSL for the site
-      enableACME = true; # Enable SSL for the site
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8065"; # Route to Mattermost
-        proxyWebsockets = true;
-      };
-    };
-  };
-};
+#    services.nginx = {
+#     enable = true;
+#
+#     virtualHosts."homelab.com.hr" = {
+#       enableACME = true;
+#       forceSSL = true;
+#
+#       locations."/" = {
+#         proxyPass = "http://127.0.0.1:3000";
+#         proxyWebsockets = true;
+#       };
+#     };
+#
+#   recommendedProxySettings = true;
+#   recommendedTlsSettings = true;
+#   virtualHosts = {
+#     # Replace with the domain from your siteUrl
+#     "default" = {
+#       forceSSL = true; # Enforce SSL for the site
+#       enableACME = true; # Enable SSL for the site
+#       locations."/" = {
+#         proxyPass = "http://127.0.0.1:8065"; # Route to Mattermost
+#         proxyWebsockets = true;
+#       };
+#     };
+#   };
+# };
 
 security.acme = {
   acceptTerms = true;
@@ -89,7 +90,13 @@ security.acme = {
 
 services.mattermost = {
   enable = true;
-  siteUrl = "https://mattermost.test-server-vps.work.gd"; # Set this to the URL you will be hosting the site on.
+  siteUrl = "http://91.99.160.220:8065";
+  config = {
+    ServiceSettings.ListenAddress = ":8065";
+    ServiceSettings.SiteURL = "http://91.99.160.220:8065";
+      TeamSettings.EnableOpenServer = true;
+      LogSettings.EnableConsole = true;
+    };
 };
 
   services.forgejo = {
@@ -102,8 +109,8 @@ services.mattermost = {
         DEFAULT_THEME = "auto";
       };
       server = {
-        DOMAIN = "test-server-vps.work.gd";
-        ROOT_URL = "https://test-server-vps.work.gd/";
+        DOMAIN = "91.99.160.220";
+        ROOT_URL = "http://91.99.160.220:3000/";
         HTTP_ADDR = "127.0.0.1";  # only accessible by Nginx
         HTTP_PORT = 3000;
       };
