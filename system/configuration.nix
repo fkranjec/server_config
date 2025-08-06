@@ -80,12 +80,11 @@
         proxyWebsockets = true;
       };
     };
-    virtualHosts."keycloak.homelab.com.hr" = {
+    virtualHosts."homelab.com.hr" = {
       enableACME = true;
       forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8080";
-        proxyWebsockets = true;
+      locations."/cloak/" = {
+        proxyPass = "http://127.0.0.1:8080/cloak/";
       };
     };
   };
@@ -144,8 +143,12 @@ services.mattermost = {
 
     settings = {
       hostname = "keycloak.homelab.com.hr";
-      https-port = 8080;
+      http-relative-path = "/cloak";
+      http-port = 8080;
+      proxy = "passthrough";
+      http-enabled = true;
     };
+    
   };
    
    networking.firewall.allowedTCPPorts = [ 22 80 443 ];
