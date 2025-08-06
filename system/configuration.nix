@@ -9,6 +9,8 @@
      pkgs.vim
      pkgs.git
      pkgs.forgejo
+     pkgs.mattermost
+     pkgs.keycloak
    ];
    
    fileSystems."/" = {
@@ -68,6 +70,11 @@
       locations."/mattermost" = {
         proxyPass = "http://127.0.0.1:8065";
         proxyWebsockets = true;
+        extraConfig = ''
+          if ($request_method = HEAD) {
+                  return 200;
+              }
+        '';
       };
       locations."/forgejo" = {
         proxyPass = "http://127.0.0.1:3000";
@@ -88,7 +95,7 @@ security.acme = {
 
 services.mattermost = {
   enable = true;
-  siteUrl = "https://homelab.com.hr";
+  siteUrl = "https://homelab.com.hr/mattermost";
 };
 
   services.forgejo = {
