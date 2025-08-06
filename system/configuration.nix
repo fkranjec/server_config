@@ -84,7 +84,7 @@
       enableACME = true;
       forceSSL = true;
       locations."/cloak/" = {
-        proxyPass = "http://127.0.0.1:8080/cloak/";
+        proxyPass = "http://127.0.0.1:38080/cloak/";
       };
     };
   };
@@ -144,8 +144,8 @@ services.mattermost = {
     settings = {
       hostname = "homelab.com.hr";
       http-relative-path = "/cloak";
-      http-port = 8080;
-      proxy-headers = "forwarded";
+      http-port = 38080;
+      proxy-headers = "xforwarded";
       http-enabled = true;
     };
     
