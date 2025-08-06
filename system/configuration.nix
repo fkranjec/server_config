@@ -92,7 +92,7 @@
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:38080/auth";
+        proxyPass = "http://127.0.0.1:38080";
         proxyWebsockets = true;
       };
     };
@@ -153,7 +153,6 @@ services.mattermost = {
     settings = {
       hostname = "homelab.com.hr";
       http-port = 38080;
-      http-relative-path = "/auth";
       http-enabled = true;
     };
   };
