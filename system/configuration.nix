@@ -80,7 +80,7 @@
         proxyWebsockets = true;
       };
     };
-    virtualHosts."homelab.com.hr" = {
+    virtualHosts."keycloak.homelab.com.hr" = {
       enableACME = true;
       forceSSL = true;
       locations."/cloak/" = {
@@ -142,7 +142,7 @@ services.mattermost = {
     initialAdminPassword = "/etc/nixos/secrets/keycloak";
 
     settings = {
-      hostname = "homelab.com.hr";
+      hostname = "keycloak.homelab.com.hr";
       http-relative-path = "/cloak";
       http-port = 38080;
       proxy-headers = "xforwarded";
