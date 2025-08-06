@@ -141,7 +141,6 @@ services.mattermost = {
       hostname = "homelab.com.hr";
       http-relative-path = "/auth";
       http-port = 38080;
-      proxy = "passthrough";
       http-enabled = true;
     };
   };
