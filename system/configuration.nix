@@ -83,10 +83,6 @@
         proxyPass = "http://127.0.0.1:3000";
         proxyWebsockets = true;
       };
-      locations."/auth" = {
-        proxyPass = "http://127.0.0.1:38080";
-        proxyWebsockets = true;
-      };
     };
     virtualHosts."keycloak.homelab.com.hr" = {
       enableACME = true;
