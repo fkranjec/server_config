@@ -142,7 +142,7 @@ services.mattermost = {
     initialAdminPassword = "/etc/nixos/secrets/keycloak";
 
     settings = {
-      hostname = "keycloak.homelab.com.hr";
+      hostname = "homelab.com.hr";
       http-relative-path = "/cloak";
       http-port = 8080;
       proxy-headers = "forwarded";
