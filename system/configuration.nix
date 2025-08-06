@@ -63,17 +63,13 @@
     recommendedOptimisation = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
+
     virtualHosts."mattermost.homelab.com.hr" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
       proxyPass = "http://127.0.0.1:8065";
       proxyWebsockets = true;
-      extraConfig = ''
-        if ($request_method = HEAD) {
-                return 200;
-            }
-      '';
       };
     };
     virtualHosts."forgejo.homelab.com.hr" = {
@@ -88,7 +84,7 @@
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:38080";
+        proxyPass = "http://127.0.0.1:8080";
         proxyWebsockets = true;
       };
     };
@@ -147,8 +143,8 @@ services.mattermost = {
     initialAdminPassword = "/etc/nixos/secrets/keycloak";
 
     settings = {
-      hostname = "homelab.com.hr";
-      http-port = 38080;
+      hostname = "keycloak.homelab.com.hr";
+      http-port = 8080;
       http-enabled = true;
     };
   };
