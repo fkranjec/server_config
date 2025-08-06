@@ -83,6 +83,7 @@
 #   };
 # };
 
+services.postgresql.enable = true;
 security.acme = {
   acceptTerms = true;
   email = "filip.kranjec@gmail.com";  # For Let's Encrypt
@@ -126,8 +127,29 @@ services.mattermost = {
       };
     };
   };
+
+
+  services.keycloak = {
+    enable = true;
+
+    database = {
+      type = "postgresql";
+      createLocally = true;
+      username = "admin";
+      passwordFile = "/etc/nixos/secrets/keycloak";
+    };
+    
+    initialAdminPassword = "/etc/nixos/secrets/keycloak";
+
+    settings = {
+      hostname = "91.99.160.220";
+      http-port = 8080;
+      https-port = 8443;
+      proxy = "edge";
+    };
+  };
    
-   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
+   networking.firewall.allowedTCPPorts = [ 22 80 443 3000 8065 8080 8443];
    
    system.stateVersion = "24.11";
  }
