@@ -144,8 +144,7 @@ services.mattermost = {
 
     settings = {
       hostname = "keycloak.homelab.com.hr";
-      http-port = 8080;
-      http-enabled = true;
+      https-port = 8080;
     };
   };
    
