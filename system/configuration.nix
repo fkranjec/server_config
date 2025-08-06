@@ -144,6 +144,7 @@ services.mattermost = {
     settings = {
       hostname = "91.99.160.220";
       http-port = 8080;
+      http-enabled = true;
     };
   };
    
