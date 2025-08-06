@@ -91,12 +91,6 @@ security.acme = {
 services.mattermost = {
   enable = true;
   siteUrl = "http://91.99.160.220:8065";
-  config = {
-    ServiceSettings.ListenAddress = ":8065";
-    ServiceSettings.SiteURL = "http://91.99.160.220:8065";
-      TeamSettings.EnableOpenServer = true;
-      LogSettings.EnableConsole = true;
-    };
 };
 
   services.forgejo = {
