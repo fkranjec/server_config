@@ -8,6 +8,7 @@
    environment.systemPackages = [
      pkgs.vim
      pkgs.git
+     pkgs.forgejo
      pkgs.mattermost
      pkgs.keycloak
    ];
@@ -110,33 +111,30 @@ services.mattermost = {
 
   services.forgejo = {
     enable = false;
-    # database = {
-    #   type = "postgres";
-    #   host = "/run/postgresql";
-    #   name = "forgejo";
-    #   user = "forgejo";
-    # };
-    # lfs.enable = true;
-    # stateDir = "/var/lib/forgejo";
-    # settings = {
-    #   
-    #   ui = {
-    #     DEFAULT_THEME = "auto";
-    #   };
-    #
-    #   server = {
-    #     DOMAIN = "homelab.com.hr";
-    #     ROOT_URL = "https://forgejo.homelab.com.hr";
-    #     HTTP_PORT = 3000;
-    #   };
-    #
-    #   # service.DISABLE_REGISTRATION = true; 
-    #
-    #   actions = {
-    #     ENABLED = true;
-    #     DEFAULT_ACTIONS_URL = "github";
-    #   };
-    # };
+    database = {
+      type = "postgres";
+    };
+    lfs.enable = true;
+    stateDir = "/var/lib/forgejo";
+    settings = {
+      
+      ui = {
+        DEFAULT_THEME = "auto";
+      };
+
+      server = {
+        DOMAIN = "homelab.com.hr";
+        ROOT_URL = "https://forgejo.homelab.com.hr";
+        HTTP_PORT = 3000;
+      };
+
+      # service.DISABLE_REGISTRATION = true; 
+
+      actions = {
+        ENABLED = true;
+        DEFAULT_ACTIONS_URL = "github";
+      };
+    };
   };
 
 
