@@ -55,33 +55,26 @@
      };
    };
 
-#    services.nginx = {
-#     enable = true;
-#
-#     virtualHosts."homelab.com.hr" = {
-#       enableACME = true;
-#       forceSSL = true;
-#
-#       locations."/" = {
-#         proxyPass = "http://127.0.0.1:3000";
-#         proxyWebsockets = true;
-#       };
-#     };
-#
-#   recommendedProxySettings = true;
-#   recommendedTlsSettings = true;
-#   virtualHosts = {
-#     # Replace with the domain from your siteUrl
-#     "default" = {
-#       forceSSL = true; # Enforce SSL for the site
-#       enableACME = true; # Enable SSL for the site
-#       locations."/" = {
-#         proxyPass = "http://127.0.0.1:8065"; # Route to Mattermost
-#         proxyWebsockets = true;
-#       };
-#     };
-#   };
-# };
+  services.nginx = {
+    enable = true;
+  
+    virtualHosts."homelab.com.hr" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/mattermost" = {
+        proxyPass = "https://127.0.0.1:8065/";
+        proxyWebsockets = true;
+      };
+      locations."/forgejo" = {
+        proxyPass = "https://127.0.0.1:3000/";
+        proxyWebsockets = true;
+      };
+      locations."/auth" = {
+        proxyPass = "https://127.0.0.1:8080/";
+        proxyWebsockets = true;
+      };
+    };
+  };
 
 services.postgresql.enable = true;
 security.acme = {
@@ -91,7 +84,7 @@ security.acme = {
 
 services.mattermost = {
   enable = true;
-  siteUrl = "http://91.99.160.220:8065";
+  siteUrl = "https://homelab.com.hr/mattermost";
 };
 
   services.forgejo = {
@@ -104,9 +97,8 @@ services.mattermost = {
         DEFAULT_THEME = "auto";
       };
       server = {
-        DOMAIN = "91.99.160.220";
-        ROOT_URL = "http://91.99.160.220:3000/";
-        HTTP_ADDR = "127.0.0.1";  # only accessible by Nginx
+        DOMAIN = "homelab.com.hr";
+        ROOT_URL = "https://homelab.com.hr/forgejo/";
         HTTP_PORT = 3000;
       };
       # You can temporarily allow registration to create an admin user.
@@ -142,13 +134,12 @@ services.mattermost = {
     initialAdminPassword = "/etc/nixos/secrets/keycloak";
 
     settings = {
-      hostname = "91.99.160.220";
+      hostname = "homelab.com.hr";
       http-port = 8080;
-      http-enabled = true;
     };
   };
    
-   networking.firewall.allowedTCPPorts = [ 22 80 443 3000 8065 8080 8443];
+   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
    
    system.stateVersion = "24.11";
  }
