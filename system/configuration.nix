@@ -66,15 +66,15 @@
       enableACME = true;
       forceSSL = true;
       locations."/mattermost" = {
-        proxyPass = "http://127.0.0.1:8065/";
+        proxyPass = "http://127.0.0.1:8065";
         proxyWebsockets = true;
       };
       locations."/forgejo" = {
-        proxyPass = "http://127.0.0.1:3000/";
+        proxyPass = "http://127.0.0.1:3000";
         proxyWebsockets = true;
       };
       locations."/auth" = {
-        proxyPass = "http://127.0.0.1:8080/";
+        proxyPass = "http://127.0.0.1:38080";
         proxyWebsockets = true;
       };
     };
@@ -88,7 +88,7 @@ security.acme = {
 
 services.mattermost = {
   enable = true;
-  siteUrl = "https://homelab.com.hr/mattermost";
+  siteUrl = "https://homelab.com.hr";
 };
 
   services.forgejo = {
@@ -139,7 +139,6 @@ services.mattermost = {
 
     settings = {
       hostname = "homelab.com.hr";
-      http-relative-path = "/auth";
       http-port = 38080;
       http-enabled = true;
     };
