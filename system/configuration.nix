@@ -57,7 +57,11 @@
 
   services.nginx = {
     enable = true;
-  
+    recommendedGzipSettings = true;
+    recommendedOptimisation = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+
     virtualHosts."homelab.com.hr" = {
       enableACME = true;
       forceSSL = true;
@@ -135,7 +139,10 @@ services.mattermost = {
 
     settings = {
       hostname = "homelab.com.hr";
-      http-port = 8080;
+      http-relative-path = "/auth";
+      http-port = 38080;
+      proxy = "passthrough";
+      http-enabled = true;
     };
   };
    
