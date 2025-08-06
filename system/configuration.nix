@@ -111,11 +111,17 @@ services.mattermost = {
 
   services.forgejo = {
     enable = true;
-    database.type = "postgres";
+    database = {
+      type = "postgres";
+      host = "/run/postgresql";
+      name = "forgejo";
+      user = "forgejo";
+    };
     # Enable support for Git Large File Storage
     lfs.enable = true;
     stateDir = "/var/lib/forgejo";
     settings = {
+      
       ui = {
         DEFAULT_THEME = "auto";
       };
