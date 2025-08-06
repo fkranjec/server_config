@@ -8,7 +8,6 @@
    environment.systemPackages = [
      pkgs.vim
      pkgs.git
-     pkgs.forgejo
      pkgs.mattermost
      pkgs.keycloak
    ];
@@ -110,43 +109,34 @@ services.mattermost = {
 };
 
   services.forgejo = {
-    enable = true;
-    database = {
-      type = "postgres";
-      host = "/run/postgresql";
-      name = "forgejo";
-      user = "forgejo";
-    };
-    # Enable support for Git Large File Storage
-    lfs.enable = true;
-    stateDir = "/var/lib/forgejo";
-    settings = {
-      
-      ui = {
-        DEFAULT_THEME = "auto";
-      };
-      server = {
-        DOMAIN = "homelab.com.hr";
-        ROOT_URL = "https://forgejo.homelab.com.hr";
-        HTTP_PORT = 3000;
-      };
-      # You can temporarily allow registration to create an admin user.
-      # service.DISABLE_REGISTRATION = true; 
-      # Add support for actions, based on act: https://github.com/nektos/act
-      actions = {
-        ENABLED = true;
-        DEFAULT_ACTIONS_URL = "github";
-      };
-      # Sending emails is completely optional
-      # You can send a test email from the web UI at:
-      # Profile Picture > Site Administration > Configuration >  Mailer Configuration 
-      mailer = {
-        ENABLED = true;
-        SMTP_ADDR = "smtp.gmail.com";
-        FROM = "filip.kranjec@gmail.com";
-        USER = "filip.kranjec@gmail.com";
-      };
-    };
+    enable = false;
+    # database = {
+    #   type = "postgres";
+    #   host = "/run/postgresql";
+    #   name = "forgejo";
+    #   user = "forgejo";
+    # };
+    # lfs.enable = true;
+    # stateDir = "/var/lib/forgejo";
+    # settings = {
+    #   
+    #   ui = {
+    #     DEFAULT_THEME = "auto";
+    #   };
+    #
+    #   server = {
+    #     DOMAIN = "homelab.com.hr";
+    #     ROOT_URL = "https://forgejo.homelab.com.hr";
+    #     HTTP_PORT = 3000;
+    #   };
+    #
+    #   # service.DISABLE_REGISTRATION = true; 
+    #
+    #   actions = {
+    #     ENABLED = true;
+    #     DEFAULT_ACTIONS_URL = "github";
+    #   };
+    # };
   };
 
 
