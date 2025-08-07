@@ -184,6 +184,7 @@ security.acme = {
         }
       ];
     };
+    extras = ["oidc"];
   };
    
    networking.firewall.allowedTCPPorts = [ 22 80 443 ];
