@@ -39,9 +39,6 @@ in
           proxy_set_header X-Forwarded-Proto $scheme;
         '';
       };
-      locations."/user/login" = {
-        return = "302 /user/oauth2/forgejo-client";
-      };
     };
     virtualHosts."keycloak.${domain}" = {
       enableACME = true;
