@@ -65,6 +65,15 @@
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
 
+    virtualHosts."homelab.com.hr" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/matrix" = {
+        proxyPass = "http://127.0.0.1:8008";
+        proxyWebsockets = true;
+      };
+    };
+
     virtualHosts."mattermost.homelab.com.hr" = {
       enableACME = true;
       forceSSL = true;
@@ -76,9 +85,9 @@
     virtualHosts."matrix.homelab.com.hr" = {
       enableACME = true;
       forceSSL = true;
+      root = "/var/www/element";
       locations."/" = {
-      proxyPass = "http://127.0.0.1:8008";
-      proxyWebsockets = true;
+        index = "index.html";
       };
     };
     virtualHosts."forgejo.homelab.com.hr" = {
@@ -171,7 +180,7 @@ services.mattermost = {
   services.matrix-synapse = {
     enable = true;
     settings = {
-      server_name = "matrix.homelab.com.hr";
+      server_name = "homelab.com.hr/matrix";
 
       listeners = [
         {
