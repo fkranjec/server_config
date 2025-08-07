@@ -164,20 +164,7 @@ security.acme = {
 
   services.matrix-synapse = {
     enable = true;
-    extraConfig = ''
-      oidc_providers:
-        - idp_id: keycloak
-          idp_name: "Homelab"
-          issuer: "https://keycloak.homelab.com.hr/cloak/realms/homelab"
-          client_id: "matrix"
-          client_secret: "jpDrTC8Rn2sP0BGYsNdV7VKXLMqiTCsc"
-          scopes: ["openid", "profile"]
-          user_mapping_provider:
-            config:
-              localpart_template: "{{ user.preferred_username }}"
-              display_name_template: "{{ user.name }}"
-          backchannel_logout_enabled: true # Optional
-    '';
+    extraConfigFile = ["/etc/nixos/secrets/homeserver.yaml"];
     settings = {
       server_name = "matrix.homelab.com.hr";
       registration_shared_secret = "super-secret";
