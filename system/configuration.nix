@@ -95,6 +95,13 @@
         proxyPass = "http://127.0.0.1:38080/cloak/";
       };
     };
+    virtualHosts."turn.homelab.com.hr" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:3478";
+      };
+    };
   };
 
 services.postgresql.enable = true;
@@ -154,6 +161,23 @@ security.acme = {
     
   };
 
+  services.coturn = {
+    enable = true;
+    use-auth-secret = true;
+    realm = "turn.homelab.com.hr";  # must match your domain
+    static-auth-secret = "strong-secret";  # use pwgen -s 64
+    lt-cred-mech = true;
+    cert = "/var/lib/acme/turn.homelab.com.hr/fullchain.pem";
+    pkey = "/var/lib/acme/turn.homelab.com.hr/key.pem";
+    listening-port = 3478;
+    extraConfig = ''
+      fingerprint
+      no-multicast-peers
+      no-cli
+      no-loopback-peers
+    '';
+  };
+
   services.postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
     CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'strong-password';
     CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
@@ -167,7 +191,10 @@ security.acme = {
     extraConfigFiles = ["/etc/nixos/secrets/homeserver.yaml"];
     settings = {
       server_name = "matrix.homelab.com.hr";
-      registration_shared_secret = "super-secret";
+      turn_uris = [
+        "turn:turn.homelab.com.hr?transport=udp"
+        "turn:turn.homelab.com.hr?transport=tcp"
+      ];
       listeners = [
         {
           port = 8008;
@@ -187,7 +214,7 @@ security.acme = {
     extras = ["oidc"];
   };
    
-   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
-   
+   networking.firewall.allowedTCPPorts = [ 22 80 443 3478 5349 ];
+   networking.firewall.allowedUDPPorts = [ 3478 5349];
    system.stateVersion = "24.11";
  }
