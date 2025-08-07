@@ -167,22 +167,21 @@ security.acme = {
     settings = {
       server_name = "matrix.homelab.com.hr";
       registration_shared_secret = "super-secret";
-      oidc_providers = [
-        {
+      oidc_providers = {
+        keycloak = {
           id = "keycloak";
           name = "Login with Keycloak";
           issuer = "https://keycloak.homelab.com.hr/cloak/realms/homelab";
           client_id = "matrix";
           client_secret = "jpDrTC8Rn2sP0BGYsNdV7VKXLMqiTCsc";
-          scopes = [ "openid" "profile" "email" ];
+          scopes = [ "openid" "profile" ];
           user_mapping_provider = {
             config = {
-              subject_claim = "sub";
               localpart_template = "{{ user.preferred_username }}";
             };
           };
-        }
-      ];
+        };
+      };
       listeners = [
         {
           port = 8008;
