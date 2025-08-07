@@ -164,7 +164,7 @@ security.acme = {
 
   services.matrix-synapse = {
     enable = true;
-    extraConfigFile = ["/etc/nixos/secrets/homeserver.yaml"];
+    extraConfigFiles = ["/etc/nixos/secrets/homeserver.yaml"];
     settings = {
       server_name = "matrix.homelab.com.hr";
       registration_shared_secret = "super-secret";
