@@ -162,9 +162,8 @@ services.mattermost = {
 
   services.matrix-synapse = {
     enable = true;
-    serverName = "matrix.homelab.com.hr";
     settings = {
-      registration_shared_secret = "super-secret";
+      server_name = "matrix.homelab.com.hr";
     };
   };
    
