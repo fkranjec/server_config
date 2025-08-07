@@ -65,10 +65,10 @@
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
 
-    virtualHosts."homelab.com.hr" = {
+    virtualHosts."matrix.homelab.com.hr" = {
       enableACME = true;
       forceSSL = true;
-      locations."/matrix" = {
+      locations."/" = {
         proxyPass = "http://127.0.0.1:8008";
         proxyWebsockets = true;
       };
@@ -82,7 +82,7 @@
       proxyWebsockets = true;
       };
     };
-    virtualHosts."matrix.homelab.com.hr" = {
+    virtualHosts."chat.homelab.com.hr" = {
       enableACME = true;
       forceSSL = true;
       root = "/var/www/element";
@@ -180,7 +180,7 @@ services.mattermost = {
   services.matrix-synapse = {
     enable = true;
     settings = {
-      server_name = "homelab.com.hr/matrix";
+      server_name = "matrix.homelab.com.hr";
 
       listeners = [
         {
