@@ -9,7 +9,6 @@
      pkgs.vim
      pkgs.git
      pkgs.forgejo
-     pkgs.mattermost
      pkgs.keycloak
      pkgs.element-web
    ];
@@ -73,15 +72,6 @@
         proxyWebsockets = true;
       };
     };
-
-    virtualHosts."mattermost.homelab.com.hr" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-      proxyPass = "http://127.0.0.1:8065";
-      proxyWebsockets = true;
-      };
-    };
     virtualHosts."chat.homelab.com.hr" = {
       enableACME = true;
       forceSSL = true;
@@ -111,11 +101,6 @@ services.postgresql.enable = true;
 security.acme = {
   acceptTerms = true;
   email = "filip.kranjec@gmail.com";  # For Let's Encrypt
-};
-
-services.mattermost = {
-  enable = true;
-  siteUrl = "https://mattermost.homelab.com.hr";
 };
 
   services.forgejo = {
@@ -182,6 +167,22 @@ services.mattermost = {
     settings = {
       server_name = "matrix.homelab.com.hr";
       registration_shared_secret = "super-secret";
+      oidc_providers = [
+        {
+          id = "keycloak";
+          name = "Login with Keycloak";
+          issuer = "https://keycloak.homelab.com.hr/realms/homelab";
+          client_id = "matrix";
+          client_secret = "jpDrTC8Rn2sP0BGYsNdV7VKXLMqiTCsc";
+          scopes = [ "openid" "profile" "email" ];
+          user_mapping_provider = {
+            config = {
+              subject_claim = "sub";
+              localpart_template = "{{ user.preferred_username }}";
+            };
+          };
+        }
+      ];
       listeners = [
         {
           port = 8008;
