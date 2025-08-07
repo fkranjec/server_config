@@ -130,6 +130,7 @@ security.acme = {
       };
 
       service.DISABLE_REGISTRATION = true; 
+      service.ALLOW_ONLY_EXTERNAL_LOGIN = true;
 
       actions = {
         ENABLED = true;
