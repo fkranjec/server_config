@@ -182,7 +182,6 @@ services.mattermost = {
     settings = {
       server_name = "matrix.homelab.com.hr";
       registration_shared_secret = "super-secret";
-      enable_registration = true;
       listeners = [
         {
           port = 8008;
