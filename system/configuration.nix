@@ -169,7 +169,7 @@ services.mattermost = {
   '';
 
   services.matrix-synapse = {
-    enable = false;
+    enable = true;
     settings = {
       server_name = "matrix.homelab.com.hr";
 
