@@ -14,7 +14,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "${localhost}:${port_matrix}";
+        proxyPass = "${localhost}:${toString port_matrix}";
         proxyWebsockets = true;
       };
     };
@@ -30,7 +30,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "${localhost}:${port_forgejo}";
+        proxyPass = "${localhost}:${toString port_forgejo}";
         proxyWebsockets = true;
       };
     };
@@ -38,14 +38,14 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/cloak/" = {
-        proxyPass = "${localhost}:${port_keycloak}/cloak/";
+        proxyPass = "${localhost}:${toString port_keycloak}/cloak/";
       };
     };
     virtualHosts."turn.${domain}" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "${localhost}:${port_turn}";
+        proxyPass = "${localhost}:${toString port_turn}";
       };
     };
   };
