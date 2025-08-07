@@ -171,7 +171,7 @@ security.acme = {
         {
           id = "keycloak";
           name = "Login with Keycloak";
-          issuer = "https://keycloak.homelab.com.hr/realms/homelab";
+          issuer = "https://keycloak.homelab.com.hr/cloak/realms/homelab";
           client_id = "matrix";
           client_secret = "jpDrTC8Rn2sP0BGYsNdV7VKXLMqiTCsc";
           scopes = [ "openid" "profile" "email" ];
