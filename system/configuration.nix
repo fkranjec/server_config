@@ -29,7 +29,6 @@
       ];
     };
   };
-  
   security.sudo.wheelNeedsPassword = false;
   
   services.openssh = {
@@ -41,13 +40,13 @@
     };
   };
 
-  services.postgresql.enable = true;
 
   security.acme = {
     acceptTerms = true;
     email = "filip.kranjec@gmail.com";
   };
 
+  services.postgresql.enable = true;
   services.postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
     CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'strong-password';
     CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
