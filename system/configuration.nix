@@ -11,6 +11,7 @@
      pkgs.forgejo
      pkgs.mattermost
      pkgs.keycloak
+     pkgs.element-web
    ];
    
    fileSystems."/" = {
@@ -69,6 +70,14 @@
       forceSSL = true;
       locations."/" = {
       proxyPass = "http://127.0.0.1:8065";
+      proxyWebsockets = true;
+      };
+    };
+    virtualHosts."matrix.homelab.com.hr" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+      proxyPass = "http://127.0.0.1:8008";
       proxyWebsockets = true;
       };
     };
@@ -149,6 +158,14 @@ services.mattermost = {
       http-enabled = true;
     };
     
+  };
+
+  services.matrix-synapse = {
+    enable = true;
+    serverName = "matrix.homelab.com.hr";
+    settings = {
+      registration_shared_secret = "super-secret";
+    };
   };
    
    networking.firewall.allowedTCPPorts = [ 22 80 443 ];
