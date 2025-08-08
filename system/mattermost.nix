@@ -6,7 +6,7 @@ in
     enable = true;
     siteName = name;
     siteUrl = "https://chat.${domain}";
-    environmentFile = /etc/nixos/secrets/gitlab;
+    environmentFile = /etc/nixos/secrets/gitlab.env;
 
     extraConfig = {
       EmailSettings = {
