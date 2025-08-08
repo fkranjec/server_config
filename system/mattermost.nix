@@ -1,12 +1,12 @@
 {pkgs, name, domain, port_mattermost,...}:
 let
-  secret = builtins.readFile "/run/secrets/gitlab";
 in
 {
   services.mattermost = {
     enable = true;
     siteName = name;
     siteUrl = "https://chat.${domain}";
+    environmentFile = /etc/nixos/secrets/gitlab;
 
     extraConfig = {
       EmailSettings = {
@@ -16,7 +16,7 @@ in
       };
       GitLabSettings= {
         Enable= true;
-        Secret= secret;
+        Secret= "$MM_GITLAB_SECRET";
         Id= "mattermost";
         Scope= "profile email";
         AuthEndpoint= "https://keycloak.${domain}/cloak/realms/homelab/protocol/openid-connect/auth";
