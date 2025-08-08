@@ -1,26 +1,26 @@
-{pkgs, domain, port_mattermost,...}:
+{pkgs, name, domain, port_mattermost,...}:
 {
   services.mattermost = {
     enable = true;
-    siteName = "Homelab";
+    siteName = name;
     siteUrl = "https://chat.${domain}";
 
     extraConfig = {
       EmailSettings = {
         EnableSignUpWithEmail = false;
-        EnableSignInWithEmail = true;
+        EnableSignInWithEmail = false;
         EnableSignInWithUsername = false;
       };
       GitLabSettings= {
         Enable= true;
-        Secret= "pKOPVDTif7qmjSQ9Fv8Cog1jbMEhWS2O";
+        Secret= builtins.readFile /etc/nixos/secrets/gitlab;
         Id= "mattermost";
         Scope= "profile email";
-        AuthEndpoint= "https://keycloak.homelab.com.hr/cloak/realms/homelab/protocol/openid-connect/auth";
-        TokenEndpoint= "https://keycloak.homelab.com.hr/cloak/realms/homelab/protocol/openid-connect/token";
-        UserAPIEndpoint= "https://keycloak.homelab.com.hr/cloak/realms/homelab/protocol/openid-connect/userinfo";
+        AuthEndpoint= "https://keycloak.${domain}/cloak/realms/homelab/protocol/openid-connect/auth";
+        TokenEndpoint= "https://keycloak.${domain}/cloak/realms/homelab/protocol/openid-connect/token";
+        UserAPIEndpoint= "https://keycloak.${domain}/cloak/realms/homelab/protocol/openid-connect/userinfo";
         DiscoveryEndpoint= "";
-        ButtonText= "Login with Homelab";
+        ButtonText= "Login with ${name}";
         ButtonColor= "#ADD015";
       };
     };

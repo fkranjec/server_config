@@ -24,6 +24,9 @@ in
       locations."/" = {
         proxyPass = "${localhost}:${toString port_forgejo}";
         proxyWebsockets = true;
+        extraConfig = ''
+        rewrite ^/user/login$ /user/oauth2/homelab;
+        '';
       };
     };
     virtualHosts."keycloak.${domain}" = {

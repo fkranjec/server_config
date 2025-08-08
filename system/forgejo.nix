@@ -1,4 +1,4 @@
-{domain, port_forgejo, ...}:
+{domain, name, port_forgejo, ...}:
 {
   services.forgejo = {
     enable = true;
@@ -11,8 +11,8 @@
       
       ui = {
         DEFAULT_THEME = "auto";
-        AUTHOR = "Homelab";
-        DESCRIPTION = "Homelab";
+        AUTHOR = name;
+        DESCRIPTION = name;
       };
 
       server = {

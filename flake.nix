@@ -5,6 +5,7 @@
  
    outputs = { nixpkgs, ... }:
     let
+      name = "Homelab";
       domain = "homelab.com.hr";
       secrets = "/etc/nixos/secrets";
       port_forgejo = 3000;
@@ -16,7 +17,7 @@
      nixosConfigurations = {
        hetzner-vps = nixpkgs.lib.nixosSystem {
          system = "x86_64-linux";
-         specialArgs = {inherit domain secrets port_forgejo port_keycloak port_turn port_mattermost; };
+         specialArgs = {inherit name domain secrets port_forgejo port_keycloak port_turn port_mattermost; };
          modules = [
            ./system/configuration.nix
          ];
