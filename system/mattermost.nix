@@ -4,6 +4,6 @@
     enable = true;
     siteName = "Homelab";
     siteUrl = "https://chat.${domain}";
-    configurationFile = "/etc/nixos/secrets/mattermost_config.json";
+    configDir = "/etc/nixos/secrets/mattermost.json";
   };
 }
