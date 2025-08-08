@@ -3,6 +3,6 @@
   services.mattermost = {
     enable = true;
     siteName = "Homelab";
-    siteUrl = "chat.${domain}";
+    siteUrl = "https://chat.${domain}";
   };
 }
