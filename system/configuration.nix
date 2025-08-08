@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
 
-  imports = [ ./hardware-configuration.nix ./nginx.nix ./turn.nix ./synapse.nix ./forgejo.nix ./keycloak.nix];
+  imports = [ ./hardware-configuration.nix ./nginx.nix ./turn.nix ./mattermost.nix ./forgejo.nix ./keycloak.nix];
 
   nix.settings = {
     experimental-features = "nix-command flakes";
