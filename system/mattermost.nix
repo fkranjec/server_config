@@ -15,7 +15,7 @@
         Enable= true;
         Secret= "pKOPVDTif7qmjSQ9Fv8Cog1jbMEhWS2O";
         Id= "mattermost";
-        Scope= "openid profile email";
+        Scope= "profile email";
         AuthEndpoint= "https://keycloak.homelab.com.hr/cloak/realms/homelab/protocol/openid-connect/auth";
         TokenEndpoint= "https://keycloak.homelab.com.hr/cloak/realms/homelab/protocol/openid-connect/token";
         UserAPIEndpoint= "https://keycloak.homelab.com.hr/cloak/realms/homelab/protocol/openid-connect/userinfo";
