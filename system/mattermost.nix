@@ -15,11 +15,11 @@
         Enable= true;
         Secret= "pKOPVDTif7qmjSQ9Fv8Cog1jbMEhWS2O";
         Id= "mattermost";
-        Scope= "";
+        Scope= "openid";
         AuthEndpoint= "https://keycloak.homelab.com.hr/cloak/realms/homelab/protocol/openid-connect/auth";
         TokenEndpoint= "https://keycloak.homelab.com.hr/cloak/realms/homelab/protocol/openid-connect/token";
         UserAPIEndpoint= "https://keycloak.homelab.com.hr/cloak/realms/homelab/protocol/openid-connect/userinfo";
-        DiscoveryEndpoint= "https://keycloak.homelab.com.hr/cloak/realms/homelab/.well-known/openid-configuration";
+        DiscoveryEndpoint= "";
         ButtonText= "Login with Homelab";
         ButtonColor= "#ADD015";
       };
