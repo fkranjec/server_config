@@ -12,7 +12,7 @@
     pkgs.git
     pkgs.forgejo
     pkgs.keycloak
-    pkgs.element-web
+    pkgs.mattermost
   ];
   
   time.timeZone = "Europe/London";
