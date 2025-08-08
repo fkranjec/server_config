@@ -1,6 +1,6 @@
 {pkgs, name, domain, port_mattermost,...}:
 let
-  secret = builtins.readFile "/etc/nixos/secrets/gitlab";
+  secret = builtins.readFile "/run/secrets/gitlab";
 in
 {
   services.mattermost = {
