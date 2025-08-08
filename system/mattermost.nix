@@ -13,7 +13,7 @@
       };
       GitLabSettings= {
         Enable= true;
-        Secret= builtins.readFile /etc/nixos/secrets/gitlab;
+        Secret= builtins.readFile "/etc/nixos/secrets/gitlab";
         Id= "mattermost";
         Scope= "profile email";
         AuthEndpoint= "https://keycloak.${domain}/cloak/realms/homelab/protocol/openid-connect/auth";
