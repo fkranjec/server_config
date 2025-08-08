@@ -8,7 +8,7 @@
     extraConfig = {
       EmailSettings = {
         EnableSignUpWithEmail = false;
-        EnableSignInWithEmail = false;
+        EnableSignInWithEmail = true;
         EnableSignInWithUsername = false;
       };
       GitLabSettings= {
