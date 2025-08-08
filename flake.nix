@@ -10,13 +10,13 @@
       port_forgejo = 3000;
       port_keycloak = 38080;
       port_turn = 3478;
-      port_matrix = 8008;
+      port_mattermost = 8065;
     in
     {
      nixosConfigurations = {
        hetzner-vps = nixpkgs.lib.nixosSystem {
          system = "x86_64-linux";
-         specialArgs = {inherit domain secrets port_forgejo port_keycloak port_turn port_matrix; };
+         specialArgs = {inherit domain secrets port_forgejo port_keycloak port_turn port_mattermost; };
          modules = [
            ./system/configuration.nix
          ];

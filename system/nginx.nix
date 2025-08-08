@@ -1,4 +1,4 @@
-{domain, port_forgejo, port_keycloak, port_turn, port_matrix, ...}:
+{domain, port_forgejo, port_keycloak, port_turn, port_mattermost, ...}:
 let
   localhost = "http://127.0.0.1";
 in
@@ -10,20 +10,12 @@ in
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
 
-    virtualHosts."matrix.${domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "${localhost}:${toString port_matrix}";
-        proxyWebsockets = true;
-      };
-    };
     virtualHosts."chat.${domain}" = {
       enableACME = true;
       forceSSL = true;
-      root = "/var/www/element";
       locations."/" = {
-        index = "index.html";
+        proxyPass = "${localhost}:${toString port_mattermost}";
+        proxyWebsockets = true;
       };
     };
     virtualHosts."forgejo.${domain}" = {
