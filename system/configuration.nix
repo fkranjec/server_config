@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  nixpkgs.config.permittedInsecurePackages = [
+    "jitsi-meet-1.0.8043"
+  ];
 
   imports = [ ./hardware-configuration.nix ./nginx.nix ./turn.nix ./mattermost.nix ./forgejo.nix ./keycloak.nix ./jitsi.nix];
 
@@ -31,9 +34,7 @@
   };
   security.sudo.wheelNeedsPassword = false;
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "jitsi-meet"
-  ];
+  
   
   services.openssh = {
     enable = true;
