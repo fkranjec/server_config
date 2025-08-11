@@ -4,7 +4,7 @@
 
 ### PasswordFile
 
-    - Kreirati file /etc/nixos/secrets/keycloak unutar kojega se nalazi plain text password.
+    - Kreirati file /var/secrets/keycloak unutar kojega se nalazi plain text password.
 
 ### Postavljanje Realma i Usera
 
@@ -16,7 +16,7 @@
 
 ### extraConfigFiles
 
-    - Kreirati file /etc/nixos/secrets/homeserver.yaml unutar kojega ide dodatna konfiguracija za matrix-synapse.
+    - Kreirati file /var/secrets/homeserver.yaml unutar kojega ide dodatna konfiguracija za matrix-synapse.
 
 ### TURN
 

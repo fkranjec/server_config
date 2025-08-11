@@ -7,7 +7,7 @@
     let
       name = "Homelab";
       domain = "homelab.com.hr";
-      secrets = "/etc/nixos/secrets";
+      secrets = "/var/secrets";
       port_forgejo = 3000;
       port_keycloak = 38080;
       port_turn = 3478;

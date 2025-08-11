@@ -1,12 +1,10 @@
-{pkgs, name, domain, port_mattermost,...}:
-let
-in
+{pkgs, name, secrets, domain, port_mattermost,...}:
 {
   services.mattermost = {
     enable = true;
     siteName = name;
     siteUrl = "https://chat.${domain}";
-    environmentFile = /etc/nixos/secrets/gitlab.env;
+    environmentFile = /var/secrets/gitlab.env;
 
     extraConfig = {
       EmailSettings = {
@@ -16,7 +14,7 @@ in
       };
       GitLabSettings= {
         Enable= true;
-        Secret= "pKOPVDTif7qmjSQ9Fv8Cog1jbMEhWS2O";
+        Secret= builtins.readFile "${secrets}/mattermost_secret";
         Id= "mattermost";
         Scope= "profile email";
         AuthEndpoint= "https://keycloak.${domain}/cloak/realms/homelab/protocol/openid-connect/auth";
