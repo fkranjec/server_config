@@ -30,6 +30,10 @@
     };
   };
   security.sudo.wheelNeedsPassword = false;
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "jitsi-meet"
+  ];
   
   services.openssh = {
     enable = true;
