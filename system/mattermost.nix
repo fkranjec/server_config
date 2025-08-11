@@ -14,7 +14,6 @@
       };
       GitLabSettings= {
         Enable= true;
-        Secret= builtins.readFile "${secrets}/mattermost_secret";
         Id= "mattermost";
         Scope= "profile email";
         AuthEndpoint= "https://keycloak.${domain}/cloak/realms/homelab/protocol/openid-connect/auth";
