@@ -13,28 +13,20 @@ in
     virtualHosts."chat.${domain}" = {
       enableACME = true;
       forceSSL = true;
+      locations."/oauth2/" = {
+        proxyPass = "http://127.0.0.1:4180";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Scheme $scheme;
+          proxy_set_header X-Auth-Request-Redirect $request_uri;
+        '';
+      };
       locations."/" = {
         proxyPass = "${localhost}:${toString port_mattermost}";
         proxyWebsockets = true;
-      };
-    };
-
-    virtualHosts."jitsi.${domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations = {
-        "/oauth2/" = {
-          proxyPass = "http://127.0.0.1:4180";
-          proxyWebsockets = true;
-          extraConfig = ''
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Scheme $scheme;
-            proxy_set_header X-Auth-Request-Redirect $request_uri;
-          '';
-        };
-        "/" = {
-          extraConfig = ''
+        extraConfig = ''
             auth_request /oauth2/auth;
 
             error_page 401 = /oauth2/sign_in;
@@ -49,10 +41,9 @@ in
 
             add_header Set-Cookie $upstream_http_set_cookie;
             '';
-        };
       };
-
     };
+
     virtualHosts."forgejo.${domain}" = {
       enableACME = true;
       forceSSL = true;
