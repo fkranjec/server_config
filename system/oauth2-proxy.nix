@@ -9,7 +9,7 @@ services.oauth2-proxy = {
       provider = "oidc";
       oidc_issuer_url = "https://keycloak.homelab.com.hr/realms/homelab";
       client_id = "nginx";
-      redirect_url = "https://chat.homelab.com.hr/oauth2/callback";
+      redirect_url = "https://jitsi.homelab.com.hr/oauth2/callback";
 
       email_domains = [ "*" ];
       scope = "openid email profile";
