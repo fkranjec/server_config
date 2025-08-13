@@ -12,12 +12,14 @@
 
 ## Forgejo
 
-## Synapse & Element
+## Mattermost
 
-### extraConfigFiles
+### environmentFile
 
-    - Kreirati file /var/secrets/homeserver.yaml unutar kojega ide dodatna konfiguracija za matrix-synapse.
+    - Kreirati file /var/secrets/gitlab.env unutar kojega ide varijabla MM_GITLABSETTINGS_SECRET={{secret}}
 
-### TURN
+## Oauth2-proxy
 
-    -
+    - Kreirati file /var/secrets/oauth2-proxy unutar kojega ide varijabla OAUTH2_PROXY_CLIENT_SECRET={{secret}} i OAUTH2_PROXY_COOKIE_SECRET={{secret}}
+
+
