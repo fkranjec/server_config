@@ -13,16 +13,6 @@ in
     virtualHosts."chat.${domain}" = {
       enableACME = true;
       forceSSL = true;
-      locations."/oauth2/" = {
-        proxyPass = "http://127.0.0.1:4180";
-        proxyWebsockets = true;
-        extraConfig = ''
-          proxy_set_header Host $host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Scheme $scheme;
-          proxy_set_header X-Auth-Request-Redirect $request_uri;
-        '';
-      };
       locations."/" = {
         proxyPass = "${localhost}:${toString port_mattermost}";
         proxyWebsockets = true;
