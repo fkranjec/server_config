@@ -26,6 +26,7 @@ in
       locations."/" = {
         proxyPass = "${localhost}:${toString port_mattermost}";
         proxyWebsockets = true;
+      };
     };
 
     virtualHosts."forgejo.${domain}" = {
