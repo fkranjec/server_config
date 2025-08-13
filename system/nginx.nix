@@ -26,22 +26,6 @@ in
       locations."/" = {
         proxyPass = "${localhost}:${toString port_mattermost}";
         proxyWebsockets = true;
-        extraConfig = ''
-            auth_request /oauth2/auth;
-
-            error_page 401 = /oauth2/sign_in;
-
-            auth_request_set $user  $upstream_http_x_auth_request_user;
-            auth_request_set $email $upstream_http_x_auth_request_email;
-            auth_request_set $groups $upstream_http_x_auth_request_groups;
-
-            proxy_set_header X-User   $user;
-            proxy_set_header X-Email  $email;
-            proxy_set_header X-Groups $groups;
-
-            add_header Set-Cookie $upstream_http_set_cookie;
-            '';
-      };
     };
 
     virtualHosts."forgejo.${domain}" = {
