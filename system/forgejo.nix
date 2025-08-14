@@ -1,4 +1,4 @@
-{domain, name, port_forgejo, ...}:
+{domain, name, port_forgejo, pkgs, ...}:
 {
   services.forgejo = {
     enable = true;
@@ -24,6 +24,19 @@
       service.ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
       service.ALLOW_ONLY_EXTERNAL_LOGIN = true;
       
+    };
+  };
+
+  services.gitea-actions-runner = {
+    package = pkgs.forgejo-actions-runner;
+    instances.default = {
+      enable = true;
+      name = "monolith";
+      url = "https://forgejo.homelab.com.hr";
+      tokenFile = "/var/secrets/runner";
+      labels = [
+        "native:host"
+      ];
     };
   };
 }
