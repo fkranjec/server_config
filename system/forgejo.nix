@@ -29,31 +29,43 @@
 
   services.gitea-actions-runner = {
     package = pkgs.forgejo-actions-runner;
-    instances.default = {
+    instances.angular = {
       enable = true;
       name = "angular";
       url = "https://forgejo.homelab.com.hr";
       tokenFile = "/var/secrets/angular";
       labels = [
         "angular"
-        "native:host"
       ];
       hostPackages = with pkgs; [
-        nodejs_22
+        bash
+        coreutils
+        curl
+        gawk
+        gitMinimal
+        gnused
+        nodejs
+        wget
       ];
     };
-    # instances.erlang = {
-    #   enable = true;
-    #   name = "erlang";
-    #   url = "https://forgejo.homelab.com.hr";
-    #   tokenFile = "/var/secrets/erlang";
-    #   labels = [
-    #     "erlang"
-    #     "native:host"
-    #   ];
-    #   hostPackages = with pkgs; [
-    #     nodejs_20
-    #   ];
-    # };
+    instances.erlang = {
+      enable = true;
+      name = "erlang";
+      url = "https://forgejo.homelab.com.hr";
+      tokenFile = "/var/secrets/erlang";
+      labels = [
+        "erlang"
+      ];
+      hostPackages = with pkgs; [
+        bash
+        coreutils
+        curl
+        gawk
+        gitMinimal
+        gnused
+        wget
+        erlang_27
+      ];
+    };
   };
 }
