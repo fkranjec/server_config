@@ -31,7 +31,7 @@
     package = pkgs.forgejo-actions-runner;
     instances.default = {
       enable = true;
-      name = "monolith";
+      name = "native_homelab";
       url = "https://forgejo.homelab.com.hr";
       tokenFile = "/var/secrets/runner";
       labels = [
