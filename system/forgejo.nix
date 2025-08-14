@@ -42,18 +42,18 @@
         nodejs_22
       ];
     };
-    instances.erlang = {
-      enable = true;
-      name = "erlang";
-      url = "https://forgejo.homelab.com.hr";
-      tokenFile = "/var/secrets/erlang";
-      labels = [
-        "erlang"
-        "native:host"
-      ];
-      hostPackages = with pkgs; [
-        nodejs_20
-      ];
-    };
+    # instances.erlang = {
+    #   enable = true;
+    #   name = "erlang";
+    #   url = "https://forgejo.homelab.com.hr";
+    #   tokenFile = "/var/secrets/erlang";
+    #   labels = [
+    #     "erlang"
+    #     "native:host"
+    #   ];
+    #   hostPackages = with pkgs; [
+    #     nodejs_20
+    #   ];
+    # };
   };
 }
