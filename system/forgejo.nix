@@ -29,7 +29,7 @@
 
   services.gitea-actions-runner = {
     package = pkgs.forgejo-actions-runner;
-    instances.angular = {
+    instances.default = {
       enable = true;
       name = "angular";
       url = "https://forgejo.homelab.com.hr";
