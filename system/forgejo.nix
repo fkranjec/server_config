@@ -35,6 +35,7 @@
       url = "https://forgejo.homelab.com.hr";
       tokenFile = "/var/secrets/angular";
       labels = [
+        "angular"
         "native:host"
       ];
       hostPackages = with pkgs; [
@@ -47,6 +48,7 @@
       url = "https://forgejo.homelab.com.hr";
       tokenFile = "/var/secrets/erlang";
       labels = [
+        "erlang"
         "native:host"
       ];
       hostPackages = with pkgs; [
