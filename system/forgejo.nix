@@ -33,6 +33,8 @@
  #    "d /var/forgejo-runner/.npm-global 0770 gitea-runner gitea-runner -"
  #  ];
 
+  systemd.services."gitea-runner-angular".serviceConfig.ReadWritePaths=["/var/lib/gitea-runner/work" "/var/www"];
+
   services.gitea-actions-runner = {
     package = pkgs.forgejo-actions-runner;
     instances.angular = {
