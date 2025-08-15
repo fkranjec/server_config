@@ -36,6 +36,7 @@
       tokenFile = "/var/secrets/angular";
       labels = [
         "angular"
+        "native:host"
       ];
       hostPackages = with pkgs; [
         bash
@@ -55,6 +56,7 @@
       tokenFile = "/var/secrets/erlang";
       labels = [
         "erlang"
+        "native:host"
       ];
       hostPackages = with pkgs; [
         bash
