@@ -26,12 +26,12 @@
       
     };
   };
- systemd.tmpfiles.rules = [
-    "d /var/forgejo-runner 0770 gitea-runner gitea-runner -"
-    "d /var/forgejo-runner/work 0770 gitea-runner gitea-runner -"
-    "d /var/forgejo-runner/.npm-cache 0770 gitea-runner gitea-runner -"
-    "d /var/forgejo-runner/.npm-global 0770 gitea-runner gitea-runner -"
-  ];
+ # systemd.tmpfiles.rules = [
+ #    "d /var/forgejo-runner 0770 gitea-runner gitea-runner -"
+ #    "d /var/forgejo-runner/work 0770 gitea-runner gitea-runner -"
+ #    "d /var/forgejo-runner/.npm-cache 0770 gitea-runner gitea-runner -"
+ #    "d /var/forgejo-runner/.npm-global 0770 gitea-runner gitea-runner -"
+ #  ];
 
   services.gitea-actions-runner = {
     package = pkgs.forgejo-actions-runner;
@@ -46,7 +46,7 @@
       ];
       settings = {
         host = {
-          # workdir_parent = "/var/forgejo-runner/";
+          workdir_parent = "/var/forgejo-runner/";
         };
       };
       hostPackages = with pkgs; [
