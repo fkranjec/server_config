@@ -46,7 +46,7 @@
       ];
       settings = {
         host = {
-          workdir_parent = "/var/lib/forgejo-runner/work";
+          workdir_parent = "/var/lib/gitea-runner/work";
         };
       };
       hostPackages = with pkgs; [
