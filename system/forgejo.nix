@@ -47,6 +47,7 @@
         gnused
         nodejs
         wget
+        nixVersions.stable
       ];
     };
     instances.erlang = {
