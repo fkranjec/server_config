@@ -27,7 +27,7 @@
     };
   };
  systemd.tmpfiles.rules = [
-    "d /var/forgejo-runner 0750 gitea-runner gitea-runner -"
+    "d /var/forgejo-runner/* 0750 gitea-runner gitea-runner -"
     "d /var/forgejo-runner/work 0750 gitea-runner gitea-runner -"
     "d /var/forgejo-runner/.npm-cache 0750 gitea-runner gitea-runner -"
     "d /var/forgejo-runner/.npm-global 0750 gitea-runner gitea-runner -"
