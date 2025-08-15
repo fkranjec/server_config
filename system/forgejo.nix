@@ -46,7 +46,7 @@
       ];
       settings = {
         host = {
-          workdir_parent = "/var/forgejo-runner/";
+          # workdir_parent = "/var/forgejo-runner/";
         };
       };
       hostPackages = with pkgs; [
