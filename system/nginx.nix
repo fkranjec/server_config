@@ -3,6 +3,10 @@ let
   localhost = "http://127.0.0.1";
 in
 {
+
+  users.users.nginx = {
+    group = "gitea-runner";
+  };
   services.nginx = {
     enable = true;
     recommendedGzipSettings = true;
