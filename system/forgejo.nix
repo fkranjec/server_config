@@ -1,4 +1,8 @@
-{domain, name, port_forgejo, pkgs, lib, utils, ...}:
+{domain, name, port_forgejo, pkgs, lib, utils, config, ...}:
+let
+  runnerRole = "gitea-actions-runner";
+  runners = config.machines.roles.${runnerRole};
+in
 {
   services.forgejo = {
     enable = true;
@@ -30,14 +34,7 @@
  #    "d /srv/gitea-runner 0770 gitea-runner gitea-runner -"
  #  ];
 
-  systemd.services.gitea-runner-angular.serviceConfig.DynamicUser = lib.mkForce false;
 
-  users.users.gitea-runner = {
-    home = "/var/lib/gitea-runner";
-    group = "gitea-runner";
-    isSystemUser = true;
-    createHome = true;
-  };
 
   users.groups.gitea-runner = {};
 
@@ -50,8 +47,13 @@
       tokenFile = "/var/secrets/angular";
       labels = [
         "angular"
-        "native:host"
+        "nixos:host"
       ];
+      settings = {
+        runner = {
+          file = "/var/lib/gitea-runner/angular/.runner";
+        };
+      };
       hostPackages = with pkgs; [
         bash
         coreutils
@@ -84,5 +86,14 @@
         erlang_27
       ];
     };
+  };
+
+  systemd.services.gitea-runner-angular.serviceConfig.DynamicUser = lib.mkForce false;
+
+  users.users.gitea-runner = {
+    home = "/var/lib/gitea-runner";
+    group = "gitea-runner";
+    isSystemUser = true;
+    createHome = true;
   };
 }
