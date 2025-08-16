@@ -33,7 +33,6 @@
   systemd.services."gitea-runner-angular".serviceConfig = {
     StateDirectory= "gitea-runner";
     CacheDirectory= "gitea-runner";
-    WorkingDirectory = "/srv/gitea-runner";
     ReadWritePaths = "/var";
   };
 
@@ -50,6 +49,7 @@
       ];
       settings = {
         host = {
+          workdir_parent = "/srv/gitea-runner";
         };
       };
       hostPackages = with pkgs; [
