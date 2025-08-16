@@ -50,7 +50,6 @@
       ];
       settings = {
         host = {
-          workdir_parent = "/srv/gitea-runner";
         };
       };
       hostPackages = with pkgs; [
