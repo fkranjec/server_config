@@ -30,11 +30,16 @@
  #    "d /srv/gitea-runner 0770 gitea-runner gitea-runner -"
  #  ];
 
-  systemd.services."gitea-runner-angular".serviceConfig = {
-    StateDirectory= "gitea-runner";
-    CacheDirectory= "gitea-runner";
-    ReadWritePaths = "/var";
+  systemd.services.gitea-runner-angular.serviceConfig.DynamicUser = false;
+
+  users.users.gitea-runner = {
+    home = "/var/lib/gitea-runner";
+    group = "gitea-runner";
+    isSystemUser = true;
+    createHome = true;
   };
+
+  users.groups.gitea-runner = {};
 
   services.gitea-actions-runner = {
     package = pkgs.forgejo-actions-runner;
@@ -47,14 +52,6 @@
         "angular"
         "native:host"
       ];
-      settings = {
-        container = {
-          network = "host";
-        };
-        host = {
-          workdir_parent = "/var/lib/gitea-runner/angular";
-        };
-      };
       hostPackages = with pkgs; [
         bash
         coreutils
