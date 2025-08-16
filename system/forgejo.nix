@@ -33,7 +33,7 @@
   systemd.services."gitea-runner-angular".serviceConfig = {
     StateDirectory= "gitea-runner";
     CacheDirectory= "gitea-runner";
-    WorkingDirectory = "/var/lib/gitea-runner";
+    WorkingDirectory = "/var/lib/gitea-runner/angular";
     ReadWritePaths = "/var";
   };
 
