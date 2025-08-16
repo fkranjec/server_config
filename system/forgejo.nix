@@ -1,4 +1,4 @@
-{domain, name, port_forgejo, pkgs, ...}:
+{domain, name, port_forgejo, pkgs, utils, ...}:
 {
   services.forgejo = {
     enable = true;
@@ -33,7 +33,8 @@
  #    "d /var/forgejo-runner/.npm-global 0770 gitea-runner gitea-runner -"
  #  ];
 
-  systemd.services."gitea-runner-angular".serviceConfig.ReadWritePaths="/var";
+  systemd.services."gitea-runner-${utils.escapeSystemdPath "${name}-linux"}".serviceConfig.ReadWritePaths =
+    "/var";
 
   services.gitea-actions-runner = {
     package = pkgs.forgejo-actions-runner;
