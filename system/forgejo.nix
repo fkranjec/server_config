@@ -94,7 +94,7 @@ in
   users.groups.gitea-runner={};
 
   systemd.tmpfiles.rules = [
-     "Z /var/www 0770 root gitea-runner -"
+     "Z /var/www 2775 root gitea-runner -"
    ];
   
 }
