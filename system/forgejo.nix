@@ -49,7 +49,7 @@
       ];
       settings = {
         host = {
-          workdir_parent = "/srv/gitea-runner";
+          workdir_parent = "/var/lib/gitea-runner/angular";
         };
       };
       hostPackages = with pkgs; [
