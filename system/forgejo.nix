@@ -27,8 +27,8 @@
     };
   };
  systemd.tmpfiles.rules = [
-    "d /var/private/gitea-runner/work 0770 gitea-runner gitea-runner -"
-    "d /var/lib/gitea-runner/work 0770 gitea-runner gitea-runner -"
+    "d /var/gitea-runner/work 0770 gitea-runner gitea-runner -"
+    "d /var/gitea-runner/work 0770 gitea-runner gitea-runner -"
   ];
 
   systemd.services."gitea-runner-${utils.escapeSystemdPath "${name}-linux"}".serviceConfig.ReadWritePaths =
@@ -47,7 +47,7 @@
       ];
       settings = {
         host = {
-          workdir_parent = "/var/private/gitea-runner/work";
+          workdir_parent = "/var/gitea-runner/work";
         };
       };
       hostPackages = with pkgs; [
