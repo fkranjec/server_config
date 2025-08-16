@@ -30,8 +30,12 @@
  #    "d /srv/gitea-runner 0770 gitea-runner gitea-runner -"
  #  ];
 
-  systemd.services."gitea-runner-${utils.escapeSystemdPath "${name}-linux"}".serviceConfig.ReadWritePaths =
-    "/var";
+  systemd.services."gitea-runner-angular".serviceConfig = {
+    StateDirectory= "gitea-runner";
+    CacheDirectory= "gitea-runner";
+    WorkingDirectory = "/var/lib/gitea-runner";
+    ReadWritePaths = "/var";
+  };
 
   services.gitea-actions-runner = {
     package = pkgs.forgejo-actions-runner;
