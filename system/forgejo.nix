@@ -47,7 +47,7 @@
       ];
       settings = {
         host = {
-          workdir_parent = "/var/lib/gitea-runner/work";
+          workdir_parent = "/var/private/gitea-runner/work";
         };
       };
       hostPackages = with pkgs; [
