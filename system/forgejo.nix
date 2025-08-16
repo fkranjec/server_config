@@ -30,9 +30,7 @@ in
       
     };
   };
- # systemd.tmpfiles.rules = [
- #    "d /srv/gitea-runner 0770 gitea-runner gitea-runner -"
- #  ];
+  
 
 
 
@@ -90,7 +88,13 @@ in
     group = "gitea-runner";
     isSystemUser = true;
     createHome = true;
+    extraGroups = ["gitea-runner"];
   };
-  virtualisation.podman.enable = true;
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  users.groups.gitea-runner={};
+
+  systemd.tmpfiles.rules = [
+     "d /var/www 0770 root gitea-runner -"
+   ];
+  
 }
