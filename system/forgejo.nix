@@ -1,4 +1,4 @@
-{domain, name, port_forgejo, pkgs, utils, ...}:
+{domain, name, port_forgejo, pkgs, lib, utils, ...}:
 {
   services.forgejo = {
     enable = true;
@@ -30,7 +30,7 @@
  #    "d /srv/gitea-runner 0770 gitea-runner gitea-runner -"
  #  ];
 
-  systemd.services.gitea-runner-angular.serviceConfig.DynamicUser = false;
+  systemd.services.gitea-runner-angular.serviceConfig.DynamicUser = lib.mkForce false;
 
   users.users.gitea-runner = {
     home = "/var/lib/gitea-runner";
