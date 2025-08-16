@@ -48,6 +48,9 @@
         "native:host"
       ];
       settings = {
+        container = {
+          network = "host";
+        };
         host = {
           workdir_parent = "/var/lib/gitea-runner/angular";
         };
