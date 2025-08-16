@@ -26,12 +26,9 @@
       
     };
   };
- # systemd.tmpfiles.rules = [
- #    "d /var/forgejo-runner 0770 gitea-runner gitea-runner -"
- #    "d /var/forgejo-runner/work 0770 gitea-runner gitea-runner -"
- #    "d /var/forgejo-runner/.npm-cache 0770 gitea-runner gitea-runner -"
- #    "d /var/forgejo-runner/.npm-global 0770 gitea-runner gitea-runner -"
- #  ];
+ systemd.tmpfiles.rules = [
+    "d /var/private/gitea-runner/work 0770 gitea-runner gitea-runner -"
+  ];
 
   systemd.services."gitea-runner-${utils.escapeSystemdPath "${name}-linux"}".serviceConfig.ReadWritePaths =
     "/var";
