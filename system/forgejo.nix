@@ -49,11 +49,6 @@ in
         "angular"
         "nixos:host"
       ];
-      settings = {
-        runner = {
-          file = "/var/lib/gitea-runner/angular/.runner";
-        };
-      };
       hostPackages = with pkgs; [
         bash
         coreutils
@@ -96,4 +91,6 @@ in
     isSystemUser = true;
     createHome = true;
   };
+  virtualisation.podman.enable = true;
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 }
