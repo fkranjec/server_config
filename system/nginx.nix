@@ -5,7 +5,7 @@ in
 {
 
   users.users.nginx = {
-    group = "gitea-runner";
+    extraGroups = ["gitea-runner"];
   };
   services.nginx = {
     enable = true;
