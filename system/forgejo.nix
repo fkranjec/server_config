@@ -28,6 +28,7 @@
   };
  systemd.tmpfiles.rules = [
     "d /var/private/gitea-runner/work 0770 gitea-runner gitea-runner -"
+    "d /var/lib/gitea-runner/work 0770 gitea-runner gitea-runner -"
   ];
 
   systemd.services."gitea-runner-${utils.escapeSystemdPath "${name}-linux"}".serviceConfig.ReadWritePaths =
