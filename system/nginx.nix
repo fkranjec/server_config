@@ -10,6 +10,15 @@ in
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
 
+    virtualHosts."tft.${domain}" = {
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/TFTPaths";
+      locations."/" = {
+        index = "browser/index.html";
+      };
+    };
+
     virtualHosts."chat.${domain}" = {
       enableACME = true;
       forceSSL = true;
