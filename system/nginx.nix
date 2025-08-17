@@ -17,7 +17,7 @@ in
     virtualHosts."tft.${domain}" = {
       enableACME = true;
       forceSSL = true;
-      root = "/var/www/TFTPaths/browser";
+      root = "/var/www/tft_stats/browser";
       locations."/" = {
         index = "index.html";
       };
