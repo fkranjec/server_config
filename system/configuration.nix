@@ -33,8 +33,6 @@
     };
   };
   security.sudo.wheelNeedsPassword = false;
-
-  
   
   services.openssh = {
     enable = true;
@@ -45,20 +43,12 @@
     };
   };
 
-
   security.acme = {
     acceptTerms = true;
     email = "filip.kranjec@gmail.com";
   };
 
   services.postgresql.enable = true;
-  services.postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
-    CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'strong-password';
-    CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
-      TEMPLATE template0
-      LC_COLLATE = "C"
-      LC_CTYPE = "C";
-  '';
    
   networking.firewall.allowedTCPPorts = [ 22 80 443 3478 5349 ];
   networking.firewall.allowedUDPPorts = [ 3478 5349];
