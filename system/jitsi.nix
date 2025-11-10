@@ -8,6 +8,16 @@
       whiteboard = {
         enabled = true;
       };
+      toolbarButtons = [
+        "microphone"
+        "camera"
+        "desktop"
+        "chat"
+        "whiteboard"
+        "raisehand"
+        "tileview"
+        "hangup"
+      ];
     };
   };
    
