@@ -4,6 +4,10 @@
     enable = true;
     hostName = "jitsi.homelab.com.hr";
     excalidraw.enable = true;
+    prosody = {
+      allowners_mux = true;
+    };
+    secureDomain.enable = true;
     config = {
       whiteboard = {
         enabled = true;
