@@ -7,7 +7,6 @@
     prosody = {
       allowners_muc = true;
     };
-    secureDomain.enable = true;
     config = {
       whiteboard = {
         enabled = true;
