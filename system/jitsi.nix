@@ -5,7 +5,7 @@
     hostName = "jitsi.homelab.com.hr";
     excalidraw.enable = true;
     prosody = {
-      allowners_mux = true;
+      allowners_muc = true;
     };
     secureDomain.enable = true;
     config = {
