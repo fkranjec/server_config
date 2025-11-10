@@ -7,6 +7,7 @@
     config = {
       whiteboard = {
         enabled = true;
+        collabServerBaseUrl = "https://jitsi.homelab.com.hr";
       };
       toolbarButtons = [
         "microphone"
