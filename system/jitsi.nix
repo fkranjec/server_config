@@ -9,16 +9,6 @@
         enabled = true;
         collabServerBaseUrl = "https://jitsi.homelab.com.hr";
       };
-      toolbarButtons = [
-        "microphone"
-        "camera"
-        "desktop"
-        "chat"
-        "whiteboard"
-        "raisehand"
-        "tileview"
-        "hangup"
-      ];
     };
   };
    
