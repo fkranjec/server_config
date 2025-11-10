@@ -1,9 +1,5 @@
 { pkgs, ... }:
 {
-  nixpkgs.config.permittedInsecurePackages = [
-    "jitsi-meet-1.0.8043"
-  ];
-
   imports = [ ./hardware-configuration.nix ./nginx.nix ./turn.nix ./mattermost.nix ./forgejo.nix ./keycloak.nix ./jitsi.nix];
 
   nix.settings = {
@@ -50,7 +46,7 @@
 
   services.postgresql.enable = true;
    
-  networking.firewall.allowedTCPPorts = [ 22 80 443 3478 5349 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 3002 3478 5349 ];
   networking.firewall.allowedUDPPorts = [ 3478 5349];
   system.stateVersion = "25.05";
  }
