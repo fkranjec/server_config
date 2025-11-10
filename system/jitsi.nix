@@ -4,6 +4,11 @@
     enable = true;
     hostName = "jitsi.homelab.com.hr";
     excalidraw.enable = true;
+    config = {
+      whiteboard = {
+        enabled = true;
+      };
+    };
   };
    
 
