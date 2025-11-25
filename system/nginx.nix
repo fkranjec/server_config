@@ -21,6 +21,37 @@ in
       locations."/" = {
         index = "index.html";
       };
+      
+    };
+
+    virtualHosts."tft-gzip.${domain}" = {
+      enableACME = true;
+      forceSSL = true;
+      root = "/var/www/tft_stats/browser";
+      locations."/" = {
+        index = "index.html";
+      };
+      extraConfig = ''
+        gzip on;
+        gzip_comp_level 5;
+        gzip_min_length 256;
+        gzip_vary on;
+        gzip_types
+          text/plain
+          text/css
+          application/json
+          application/javascript
+          application/x-javascript
+          text/xml
+          application/xml
+          application/xml+rss
+          application/xhtml+xml
+          application/font-woff2
+          image/svg+xml;
+
+        # Angular SPA fallback
+        try_files $uri $uri/ /index.html;
+      '';
     };
 
     virtualHosts."chat.${domain}" = {
