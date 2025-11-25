@@ -38,6 +38,7 @@ in
 
   services.gitea-actions-runner = {
     package = pkgs.forgejo-actions-runner;
+    
     instances.angular = {
       enable = true;
       name = "angular";
@@ -94,7 +95,8 @@ in
   users.groups.gitea-runner={};
 
   systemd.tmpfiles.rules = [
-     "Z /var/www 2775 root gitea-runner -"
+     "d /var/lib/gitea-runner 0775 gitea-runner gitea-runner -"
+     "Z /var/www 2775 gitea-runner gitea-runner -"
    ];
   
 }

@@ -21,7 +21,6 @@ in
       locations."/" = {
         index = "index.html";
       };
-      
     };
 
     virtualHosts."tft-gzip.${domain}" = {
