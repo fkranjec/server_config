@@ -33,12 +33,14 @@ in
       };
       extraConfig = ''
         gzip on;
+        gzip_static on;
         gzip_comp_level 5;
         gzip_min_length 256;
         gzip_vary on;
         gzip_types
           text/plain
           text/css
+          text/javascript
           application/json
           application/javascript
           application/x-javascript
