@@ -34,8 +34,9 @@ in
       extraConfig = ''
         gzip on;
         gzip_static on;
-        gzip_comp_level 5;
-        gzip_min_length 256;
+        gzip_buffers 4 16k;
+        gzip_comp_level 2;
+        gzip_min_length 1k;
         gzip_vary on;
         gzip_types
           text/plain
@@ -49,10 +50,9 @@ in
           application/xml+rss
           application/xhtml+xml
           application/font-woff2
-          image/svg+xml;
-
-        # Angular SPA fallback
-        try_files $uri $uri/ /index.html;
+          image/svg+xml
+          image/png;
+        gzip_disable "MSIE [1-6].";
       '';
     };
 
