@@ -33,8 +33,8 @@ in
         gzip on;
         gzip_static on;
         gzip_buffers 4 16k;
-        gzip_comp_level 2;
-        gzip_min_length 1k;
+        gzip_comp_level 5;
+        gzip_min_length 100;
         gzip_vary on;
         gzip_types
           text/plain
